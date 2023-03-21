@@ -17,6 +17,11 @@ if not S % 6:  # То же, что и S % 6 == 0
 else:
     print("-> При заданном S задача не имеет целочисленного решения.")
 
+# n = int(input())  # Решение от преподавателя (без условия).
+# n1 = n // 6
+# n2 = n // 6
+# n3 = (n // 6) * 4
+# print(n1, n3, n2)
 
 # The example displays the following output:
 #
