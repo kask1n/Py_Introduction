@@ -14,7 +14,12 @@ while flag:
 
 print("-> 2^k:", end='')
 
-res = 1
-while res <= n:
-    print(f' {res}', end='')
-    res *= 2
+# res = 1
+# while res <= n:
+#     print(f' {res}', end='')
+#     res *= 2
+
+i = 0
+while 2 ** i <= n:  # Транслятор умеет вычислять нулевую степень числа.
+    print(f' {2 ** i}', end='')
+    i += 1

@@ -26,37 +26,50 @@
 # ------------------------------------------------------
 
 from random import randint
+from random import choice
 
-quantity = int(input("Введите количество холодильников: "))
-# dict = "abcdefghijklmnopqrstuvwxyz0123456789"
-dict = "aannttoo3"
-# list_1 = [exp for item in quantity]
-line_1 = []
-target = 'anton'
+quantity = int(input("Введите количество холодильников (Q): "))
+virus_targets = set(input("ВИРУС. Введите номера холодильников для заражения через пробел (N ≤ Q): ").split())
 
+dictionary = "abcdefghijklmnopqrstuvwxyz0123456789"
+virus = target = 'ANTON'
+
+titles_list = []
 for i in range(quantity):
-    word_1 = ''
-    for j in range(randint(10, 19)):  # randint[] range[) randint(5,99)
-        word_1 += dict[randint(0, len(dict) - 1)]
-    line_1.append(word_1)
+    title = ''
+    for j in range(randint(5, 100)):  # Длина слова в пределах интервала [5, 100].
+        title += choice(dictionary)
+    titles_list.append(title)
 
-print(line_1)
-find = ""
+print(titles_list)
+
+for i in range(len(titles_list)):
+    if str(i + 1) in virus_targets:
+        current_ind = randint(0, len(titles_list[i]))
+
+        for char in virus:
+            titles_list[i] = titles_list[i][:current_ind] + char + titles_list[i][current_ind:]
+            current_ind = randint(current_ind + 1, len(titles_list[i]))
+
+print(titles_list)
+print(f"-> Номера заражённых холодильников:", end="")
 
 word_number = 0
+for i in titles_list:
 
-for i in line_1:
-    # for word in line_1:
     find = ""
     char = 0
     for j in target:
-        while char < len(i):
+
+        flag = True
+        while flag and char < len(i):
             if i[char] == j:
                 find += i[char]
                 char += 1
-                break
-            char += 1
-        # break
+                flag = False
+            else:
+                char += 1
+
     if find == target:
-        print(f"Номер слова: {word_number + 1}")
+        print(f" {word_number + 1}", end="")
     word_number += 1

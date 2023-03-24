@@ -30,7 +30,7 @@ flag = True
 while flag:
     a = input("Введите выбор Тимура, указав одно из значений:\n"
               "'камень', 'ножницы', 'бумага', 'ящерица' или 'Спок': ")
-    if a.lower() in options[0:3]:
+    if a.lower() in options[:4]:  # [0, 4), т.е. 0 1 2 3
         a = a.lower()
         flag = False
     elif a.capitalize() in options[4]:
@@ -43,10 +43,10 @@ flag = True
 while flag:
     b = input("Введите выбор Руслана, указав одно из значений:\n"
               "'камень', 'ножницы', 'бумага', 'ящерица' или 'Спок': ")
-    if b.lower() in options:
+    if b.lower() in options[:4]:  # [0, 4), т.е. 0 1 2 3
         b = b.lower()
         flag = False
-    elif b.capitalize() in options:
+    elif b.capitalize() in options[4]:
         b = b.capitalize()
         flag = False
     else:
@@ -67,7 +67,4 @@ m = {'камень-камень': 'ничья', 'камень-ножницы': '
 #     if k == string:
 #         print(f"-> Результат жеребьёвки: {v}")
 
-print(m[f'{a}-{b}'])
-
-spisok[i]
-slovar[key]
+print(f"-> Результат жеребьёвки: {m[f'{a}-{b}']}")
