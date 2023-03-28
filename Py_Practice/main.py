@@ -7,5 +7,13 @@
 # print(values)
 # print(len(values))
 
-string = "asdfjk;l"
-print(type(string))
+def input_float(prompt=None):
+    while True:
+        s = input(prompt)
+        try:
+            return float(s)
+        except ValueError:
+            print('-> ОШИБКА: Ожидалось вещественное число.')
+
+# f = input_float('Введите вещественное число: ')
+# print('Вы ввели', f)

@@ -23,31 +23,62 @@ print("->", *list_a)
 
 flag = True
 while flag:
-    x = int(input("Введите искомое число (X≥1): "))
-    if x > 0:
+    x = input("Введите искомое вещественное число (X): ")
+    try:
+        x = float(x)
         flag = False
-    else:
-        print("Введено некорректное значение!")
+    except ValueError:
+        print('-> ОШИБКА: Введено некорректное значение!')
 
-result = 0
-difference = 0
-flag = True
-while not result:
-    # for item in list_a:  # Лишние итерации в цикле при нахождении ближайшего (вернёт последнее вхождение).
-    #     if abs(x - item) == difference:
-    #         result = item
 
-    index = 0
-    while index < n and flag:
-        if abs(x - list_a[index]) == difference:
-            result = list_a[index]
-            flag = False
+# result = 0
+# difference = 0
+# flag = True
+# while not result:  # Возвращает ПОСЛЕДНЕЕ вхождение (если порядок не важен, то лишние итерации).
+#     for item in list_a:  # Работает только с целыми числами.
+#         if abs(x - item) == difference:
+#             result = item
+#             flag = False
+#
+#     difference += 1
+
+def nearest_number_int(list, find):  # Возвращает ПЕРВОЕ вхождение (предпочтительнее, если порядок не важен).
+    difference = 0  # Работает только с целыми числами.
+    while True:
+        for item in list:
+            if abs(find - item) == difference:
+                return item
+        difference += 1
+
+
+# print(f"Самый близкий по величине элемент к заданному числу ({x}): {nearest_number_int(list_a, x)}")
+
+
+def nearest_number_float(list, find):  # Сразу возвращает ИСКОМОЕ, ИНАЧЕ БЛИЖАЙШЕЕ к искомому (полный цикл).
+    diffs = set()  # Работает со всеми вещественными числами.
+    for item in list:
+        diff = abs(find - item)
+
+        if not diff:
+            return item
         else:
-            index += 1
+            diffs.add(diff)
 
-    difference += 1
+    if find - min(diffs) in list:  # Если искомое равноудалено от двух - выведет меньшее по значению.
+        return find - min(diffs)
+    else:
+        return find + min(diffs)
 
-print(f"Самый близкий по величине элемент к заданному числу {x}: {result}")
+    # for index in range(len(list)):  # Работает по индексу без дополнительного списка.
+    #     diff = abs(find - list[index])
+    #     if not diff:
+    #         return list[index]
+    #     else:
+    # elif min_diff < abs(find - list[index]):
+    # min_diff = abs(find - list[index])
+
+
+print(f"Самый близкий по величине элемент к заданному числу ({x}): {round(nearest_number_float(list_a, x))}")
 
 # from random import randint as RD
 # n = int(input("Введите количество элементов массива : "))
@@ -81,5 +112,3 @@ print(f"Самый близкий по величине элемент к зад
 #             flag = False
 #         i+=1
 #     j+=1
-#
-# print(f'res = {find_res}')

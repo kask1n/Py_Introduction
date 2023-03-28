@@ -20,46 +20,28 @@
 # Sample Output 3: 31
 # ------------------------------------------------------
 
-while True:
-    n = int(input("Введите р - не менее 1 и не более 100: "))
+def input_heads_tails():
+    while True:
+        string = input("Введите (О) орёл или (Р) решка не менее 1 и не более 100 раз: ").upper()
+        if 0 < len(string) < 101:
+            if set(string).issubset({'Р', 'О', 'P', 'O'}):  # True, если только указанные символы, иначе False.
+                return string
+            else:
+                print("-> Введены некорректные символы!")
+        else:
+            print("-> Некорректная длина строки!")
 
-    if 0 < n < 101:
-        break
-
-    print("-> Введено некорректное число!")
 
 max_counter = 0
 counter = 0
 
-a = []
-for i in range(n):  # [0, n). Решение с массивом через два цикла (заполнение).
-    a.insert(i, int(input(f"Введите среднесуточную температуру {i + 1}-го дня: ")))
-
-for i in range(len(a)):  # [0, len(a)). Решение с массивом через два цикла (подсчёт результатов).
-    if a[i] > 0:
+string = input_heads_tails()
+for item in string:
+    if item in {'Р', 'P'}:
         counter += 1
-        if counter > max_counter:
+        if max_counter < counter:
             max_counter = counter
-
     else:
         counter = 0
 
-print(f"\nКоличество дней самой длинной оттепели: {max_counter}")
-
-
-string_1 = input("Введите строку, состоящую из Р и О: ")
-string_1 = string_1.upper()
-i = 0
-sum = 0
-max = 0
-
-while i < len(string_1):
-    if (string_1[i] == 'Р'):
-        sum = sum + 1
-        if max<sum:
-            max=sum
-    else:
-        sum = 0
-    i = i + 1
-
-print(max)
+print(f"Наибольшее количество подряд выпавших Решек: {max_counter}")

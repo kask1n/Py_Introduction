@@ -32,44 +32,42 @@ quantity = int(input("Введите количество холодильник
 virus_targets = set(input("ВИРУС. Введите номера холодильников для заражения через пробел (N ≤ Q): ").split())
 
 dictionary = "abcdefghijklmnopqrstuvwxyz0123456789"
-virus = target = 'ANTON'
+virus = antivirus = 'ANTON'
 
 titles_list = []
-for i in range(quantity):
+for index in range(quantity):  # Генерируем названия холодильников.
     title = ''
-    for j in range(randint(5, 100)):  # Длина слова в пределах интервала [5, 100].
+    for char in range(randint(5, 100)):  # Длина слова в пределах интервала [5, 100].
         title += choice(dictionary)
     titles_list.append(title)
 
 print(titles_list)
 
-for i in range(len(titles_list)):
-    if str(i + 1) in virus_targets:
-        current_ind = randint(0, len(titles_list[i]))
+for index in range(len(titles_list)):  # Внедряем вирус в целевые холодильники.
+    if str(index + 1) in virus_targets:  # Нумерация в программе начинается с нуля, а для пользователя - с 1.
+        current_ind = randint(0, len(titles_list[index]))
 
         for char in virus:
-            titles_list[i] = titles_list[i][:current_ind] + char + titles_list[i][current_ind:]
-            current_ind = randint(current_ind + 1, len(titles_list[i]))
+            titles_list[index] = titles_list[index][:current_ind] + char + titles_list[index][current_ind:]
+            current_ind = randint(current_ind + 1, len(titles_list[index]))
 
 print(titles_list)
 print(f"-> Номера заражённых холодильников:", end="")
 
 word_number = 0
-for i in titles_list:
+for title in titles_list:  # Ищем вирус среди всех холодильников.
 
     find = ""
-    char = 0
-    for j in target:
+    index = 0
+    for char in antivirus:
 
         flag = True
-        while flag and char < len(i):
-            if i[char] == j:
-                find += i[char]
-                char += 1
+        while flag and index < len(title):
+            if title[index] == char:
+                find += title[index]
                 flag = False
-            else:
-                char += 1
+            index += 1
 
-    if find == target:
+    if find == antivirus:
         print(f" {word_number + 1}", end="")
     word_number += 1
