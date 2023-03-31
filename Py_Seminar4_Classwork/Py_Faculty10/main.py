@@ -10,62 +10,76 @@
 from random import randint
 
 
-def player_input(candies, player):
+def input_natural():
     while True:
-        n = int(input(f"Игрок {player}, введите количество конфет (1≤N≤28): "))
-        if 0 < n < 29:
+        x = input(f"Введите начальное количество конфет: ")
+        try:
+            x = int(x)
+            if x > 0:
+                return x
+            else:
+                print('-> ОШИБКА: Количество должно быть больше нуля!')
+
+        except ValueError:
+            print('-> ОШИБКА: Введено некорректное значение!')
+
+
+def select_player(x):
+    while True:
+        n = int(input(f"Выберите режим {x}-го игрока (1 - человек, 2 - рандомайзер, 3 - ИИ): "))
+        if 0 < n < 4:
             return n
+        print("-> Введено некорректное значение!")
+
+
+def player_input(candies):
+    while True:
+        n = int(input(f"Введите количество конфет (1≤N≤28): "))
+        if 0 < n < 29 and n <= candies:
+            return candies - n
         print("-> Введено некорректное количество!")
 
 
-def random_input(candies, player):
-    n = randint(1, 28)
-    print(f"Рандомайзер вводит количество конфет: {n}")
-    return n
+def random_input(candies):
+    n = randint(1, min(candies, 28))
+    print(f"-> Рандомайзер вводит количество конфет: {n}")
+    return candies - n
 
 
-def ai_input(candies, player):
+def ai_input(candies):
     if candies % 29:
         n = candies % 29
     else:
-        n = randint(1, 28)
-    print(f"Искусственный интеллект вводит количество конфет: {n}")
-    return n
+        n = randint(1, min(candies, 28))
+    print(f"-> Искусственный Интеллект вводит количество конфет: {n}")
+    return candies - n
 
 
-# ИГРА БОТ + БОТ* с интелектом
-# import random
-# sum=int(input("Введите количество конфет: "))
-# sum1=0
-# step1=0
-# step2=0
-# step3=0
-# i=1
-# while sum>0:
-#         if sum<=57 and sum>=30:
-#             step1=(sum-29)
-#             sum=sum-step1
-#             print(f"Ход первого игрока:{step1} ")
-#             print(f"Остаток конфет: {sum}")
-#             print(f"Первый игрок победил!!! ")
-#             break
-#         else:
-#             for i in range (1,28,1):
-#                 if sum - i==58:
-#                     step3=i
-#             if step3>0:
-#                 print(f"Ход первого игрока:{step3} ")
-#                 sum=sum-step3
-#                 print(f"Остаток конфет: {sum}")
-#                 sum1=sum1+step3
-#             else:
-#                 step1=(random.randint(1,28))
-#                 print(f"Ход первого игрока:{step1} ")
-#                 sum=sum-step1
-#                 print(f"Остаток конфет: {sum}")
-#                 sum1=sum1+step1
-#
-#         step2=(random.randint(1,28))
-#         print(f"Ход второго игрока:{step2} ")
-#         sum=sum-step2
-#         print(f"Остаток конфет: {sum}")
+candies = input_natural()
+p1_type = select_player(1)
+p2_type = select_player(2)
+print("ИГРА НАЧАЛАСЬ!\n")
+
+first = True
+while candies > 0:
+
+    if first:
+        player_type = p1_type
+        turn = 1
+    else:
+        player_type = p2_type
+        turn = 2
+
+    print(f"Осталось конфет: {candies}\nХод игрока {turn}. ", end="")
+
+    if player_type == 1:
+        candies = player_input(candies)
+    elif player_type == 2:
+        candies = random_input(candies)
+    else:
+        candies = ai_input(candies)
+
+    first = not first
+
+    if not candies:
+        print(f"ПОБЕДИЛ ИГРОК {turn}!")

@@ -26,15 +26,15 @@ while flag:
         print('-> ОШИБКА: Введено некорректное значение!')
 
 
-def power_recursion(a, b):
-    if a == 0:
+def power_recursion(number, power):
+    if number == 0:
         return 0
-    if b == 0:
+    if power == 0:
         return 1
-    elif b > 0:
-        return a * power_recursion(a, b - 1)
+    elif power > 0:
+        return number * power_recursion(number, power - 1)
     else:
-        return power_recursion(1 / a, -b)
+        return power_recursion(1 / number, -power)
 
 
 print(f"-> {a} в степени {b} = {power_recursion(a, b)}")

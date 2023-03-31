@@ -8,17 +8,21 @@
 
 def input_natural_or_zero(text):
     while True:
-        x = input(f"Введите целое число ({text}): ")
+        x = input(f"Введите целое число ({text}≥0): ")
         try:
-            return int(x)
+            x = int(x)
+            if x >= 0:
+                return x
+            else:
+                print('-> ОШИБКА: Введено отрицательное число!')
         except ValueError:
             print('-> ОШИБКА: Введено некорректное значение!')
 
 
-def summ(a, b):
-    if b == 0:
-        return
-    return summ(a, b - 1) + 1
+def summ(first, second):
+    if second == 0:
+        return first
+    return summ(first + 1, second - 1)
 
 
 a = input_natural_or_zero('A')

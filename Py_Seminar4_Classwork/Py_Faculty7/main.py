@@ -4,33 +4,18 @@
 # [2, 3, 5, 9, 3] -> на нечётных позициях элементы 3 и 9, ответ: 12
 # ------------------------------------------------------
 
-list = [2, 3, 5, 9, 3]
-sum = 0
+elements = [2, 3, 5, 9, 3]
+print(sum(elements[1::2]))  # РЕШЕНИЕ В 1 СТРОКУ. Вернуть и просуммировать все элементы списка с 1, с шагом 2.
 
-if i%2 in
+# summ = 0
+# for i in range(len(elements)):
+#     if i % 2 == 1:
+#         summ += elements[i]
+#
+# print(f"{elements}\n-> Сумма элементов, стоящих на нечётных позициях = {summ}")
 
-    # list = [2, 3, 5, 9, 3]
-    #
-    # sum = 0
-    #
-    # for i in range(len(list)):
-    #     if i % 2 == 1:
-    #         sum += list[i]
-    #
-    # print(sum)
-
-# elements = str.split(input("Введите список элементов:"))
-# elements = [int(i) for i in elements]
-# i = 0
-# sum = 0
-# sp = []
-# while i < len(elements):
-#     sum = sum + elements[i]
-#     sp.append(elements[i])
-#     i = i + 2
-# print(f"На нечетных позициях стоят элементы {sp} их сумма равна {sum}")
-
-# from random import randint as RDn = int(input("Введите количество элементов массива : "))a = [RD(0,10) for _ in range(n)]print("Массив состоит из: ", *a)print(sum([a[i] for i in range(0, len(a), 2)]))
-
-# my_list = [8, 5, 7, 3, 6]
-# print(sum(my_list[1::2]))
+# elements = input("Введите список чисел через пробел: ").split()  # Преобразует строку в список подстрок.
+# elements = [int(item) for item in elements]  # Преобразует каждую подстроку списка в целое число.
+# odd_elements = [elements[index] for index in range(1, len(elements), 2)]
+# # Заполняет новый список значениями из elements с нечётными индексами: [1, len) с шагом 2, т.е. 1 3 5..
+# print(f"На нечетных позициях стоят элементы {odd_elements} их сумма равна {sum(odd_elements)}")

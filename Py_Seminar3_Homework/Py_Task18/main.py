@@ -69,46 +69,23 @@ def nearest_number_float(list, find):  # Сразу возвращает ИСК�
     else:
         return find + min(diffs)
 
-    # for index in range(len(list)):  # Работает по индексу без дополнительного списка.
-    #     diff = abs(find - list[index])
-    #     if not diff:
-    #         return list[index]
-    #     else:
-    # elif min_diff < abs(find - list[index]):
-    # min_diff = abs(find - list[index])
+
+# print(f"Самый близкий по величине элемент к заданному числу ({x}): {round(nearest_number_float(list_a, x))}")
 
 
-print(f"Самый близкий по величине элемент к заданному числу ({x}): {round(nearest_number_float(list_a, x))}")
+def nearest_number_fast(lst, find):  # Работает по индексу без дополнительного списка.
 
-# from random import randint as RD
-# n = int(input("Введите количество элементов массива : "))
-# a = [RD(0,100) for _ in range(n)]
-# print("Массив состоит из: ", *a)
-# x = int(input("Введите элемент массива : "))
-# a.sort()
-# print("Отсортированный массив: ", *a)
-# a.append(x)
-# a.sort()
-# q = list_a.index(x)
-# if q!= len(a) and q!=0 and a[q-1]- x <= a[q+1]-x : print("Ближайший элемент:", a[q-1])
-# else: print(f"К числу  {x} ближайший элемент:", a[q+1])
+    min_index = 0
+    min_diff = abs(find - lst[0])
+    for index in range(len(lst)):
+        diff = abs(find - lst[index])
+        if not diff:
+            return lst[index]
+        else:
+            if min_diff > diff:
+                min_diff = diff
+                min_index = index
 
+    return lst[min_index]
 
-# from random import randint
-# a = []
-# n = int(input("Введите количество числе в списке:  "))
-# x = int(input("Искомое число:  "))
-# for i in range(n):
-#     a.append(randint(1,10))
-# print(a)
-# j = 0
-# find_res = 0
-# flag = True
-# while find_res == 0:
-#     i = 0
-#     while i<n and flag:
-#         if abs(x-a[i])==j:
-#             find_res = a[i]
-#             flag = False
-#         i+=1
-#     j+=1
+print(f"Самый близкий по величине элемент к заданному числу ({x}): {round(nearest_number_fast(list_a, x))}")

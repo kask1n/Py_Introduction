@@ -62,6 +62,9 @@ dictionary = {'[AEIOULNSTRaeioulnstr]': '1', '[DGdg]': '2', '[BCMPbcmp]': '3',
 # print(f"-> Ценность введённого слова = {score}")
 
 for key in dictionary:
-    word = re.sub(key, dictionary[key], word)  # TODO: Разобраться в работе функции re.sub.
+    word = re.sub(key, dictionary[key], word)
+    # Если в word (string) есть любой символ из key (string),
+    # то функция .sub заменяет значение в соответствующем индексе word на dictionary[key].
 
-print(f"-> Ценность введённого слова = {sum(map(int, word))}")  # TODO: Разобраться в работе функции map.
+print(f"-> Ценность введённого слова = {sum(map(int, word))}")
+# Функция map применяет int для каждого элемента word и возвращает такое же количество результатов в sum.

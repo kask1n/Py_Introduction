@@ -3,12 +3,31 @@
 # ------------------------------------------------------
 
 def palindrome(a):
-    if len(a) == 0 or len(a) == 1:
+    if len(a) <= 1:
         return print('Это палиндром')
-    if a[0] == a[-1]:
+    elif a[0] == a[-1]:
         palindrome(a[1:-1])
     else:
         return print('Это НЕ палиндром')
 
-a = input("Введите текст: ")
-palindrome(a)
+
+s = input("Введите строку: ")
+palindrome(s)
+
+
+def is_palindrome(s):
+    if len(s) > 1:
+        if s[0] == s[-1]:
+            return is_palindrome(s[1:-1])
+        else:
+            return False
+    else:
+        return True
+
+
+s = input("Ведите строку: ")
+
+if is_palindrome(s):
+    print("Yes")
+else:
+    print("No")
