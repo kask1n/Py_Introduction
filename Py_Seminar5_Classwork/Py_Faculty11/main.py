@@ -2,26 +2,33 @@
 # (то есть читается одинаково справа налево и слева направо) с использованием рекурсии.
 # ------------------------------------------------------
 
-def palindrome(a):
-    if len(a) <= 1:
-        return print('Это палиндром')
-    elif a[0] == a[-1]:
-        palindrome(a[1:-1])
-    else:
-        return print('Это НЕ палиндром')
-
-
-s = input("Введите строку: ")
-palindrome(s)
-
+# def palindrome(a):
+#     if len(a) <= 1:
+#         return print('Это палиндром')
+#     elif a[0] == a[-1]:
+#         palindrome(a[1:-1])  # [1, -1)
+#     else:
+#         return print('Это НЕ палиндром')
+#
+#
+# s = input("Введите строку: ")
+# palindrome(s)
+# ------------------------------------------------------
 
 def is_palindrome(s):
     if len(s) > 1:
+        print(s)
+        print("Проверка длины")
         if s[0] == s[-1]:
-            return is_palindrome(s[1:-1])
+            print("Сравнение символов")
+            return is_palindrome(s[1:-1])  # Возвращает результат только после завершения  всех вычислений.
+            # Если не указать return, то результат вернётся в надфункцию, а дальше не передастся (вернёт None).
+            print("После рекурсии")
         else:
+            print("Символы отличаются")
             return False
     else:
+        print("Длина минимальная")
         return True
 
 

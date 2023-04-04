@@ -3,3 +3,15 @@
 #
 # Обратите внимание: на 9 должно делиться исходное двузначное число, а не его квадрат.
 # ------------------------------------------------------
+
+list_1 = [i for i in range(10, 100)]
+print(list_1)
+
+list_1 = list(filter(lambda x: not x % 9, list_1))
+print(list_1)
+
+list_1 = list(map(lambda x: x * x, list_1))
+print(list_1)
+
+summ = sum(list_1)
+print(summ)

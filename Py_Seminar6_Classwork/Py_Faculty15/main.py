@@ -20,8 +20,8 @@ for i in list_num:
     if i[:2] not in d.keys():
         d[i[:2]] = [i]
     else:
-        d[i[:2]] = d.get(i[:2]) + [i]
+        d[i[:2]] += [i]
 
-d = {d[i[:2]] for i in list_num if i[:2] not in d.keys()}
+# d = {d[i[:2]] for i in list_num if i[:2] not in d.keys()}
 
 print(sorted(d.items()))

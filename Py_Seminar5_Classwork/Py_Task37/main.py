@@ -7,22 +7,22 @@
 # Output: 4 3
 # ------------------------------------------------------
 
-def f(n):
+def reverse_input(n):  # Рекурсия для последовательности чисел.
     if n == 0:
-        return '+'
+        return '->'
     k = int(input("Введите число: "))
-    # return f' {k}' + f(n - 1)
-    return f(n - 1) + f' {k}'
+    return reverse_input(n - 1) + f' {k}'
 
 
-n = int(input("Введите количество чисел: "))
-print(f(n))
+def reverse_other(a):  # Рекурсия для строки.
+    if len(a) == 0:
+        return ""
+    else:
+        return str(reverse_other(a[1:])) + a[0]
 
-# def reverse(a):
-#     if len(a) == 0:
-#         return ""
-#     else:
-#         return str(reverse(a[1:])) + a[0]
-#
-# n = input("Введите последовательность: ")
-# print(reverse(n))
+
+number = int(input("Введите количество чисел: "))
+print(reverse_input(number))
+
+# number = input("Введите строку: ")
+# print(reverse_other(number))

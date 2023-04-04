@@ -25,6 +25,9 @@ for i in range(len(list_n)):
     sum_current = list_n[i - 2] + list_n[i - 1] + list_n[i]
     if maximum < sum_current:
         maximum = sum_current
-        # index_max = i  # TODO: Добавить указатель индекса грядки.
+        index_max = i - 1
 
-print(f"Максимальное число ягод, которое может собрать за один заход собирающий модуль = {maximum}")
+print(f"-> Максимальное число ягод, которое может собрать за один заход собирающий модуль = {maximum}")
+if index_max == -1:
+    index_max = len(list_n) - 1
+print(f"-> Номер куста, перед которым можно собрать максимальное количество ягод = {index_max + 1}")
