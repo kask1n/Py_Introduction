@@ -1,10 +1,11 @@
 # 5. Напишите функцию triangle(a, b, c), которая принимает на вход три длины отрезков и определяет,
 # можно ли из этих отрезков составить треугольник.
-# Входные данные
-# Выходные данные
-# triangle(1, 1, 2)
-# Это не треугольник
-# triangle(7, 6, 10)
+#
+# Входные данные: triangle(1, 1, 2)
+# Выходные данные: Это НЕ треугольник
+# Входные данные: triangle(7, 6, 10)
+# Выходные данные: Это треугольник
+#
 # ------------------------------------------------------
 
 def input_natural(num):
@@ -27,16 +28,16 @@ def check_triangle(segments):
     return True
 
 
-segments_list = [input_natural(1), input_natural(2), input_natural(3)]
+# def check_triangle_and(a, b, c):
+#     if a + b > c and a + c > b and b + c > a:
+#         return True
+#     return False
+
+
+segments_list = [input_natural(each) for each in range(1, 4)]  # [1, 3)
 print(segments_list)
 
 if check_triangle(segments_list):
     print("-> Это треугольник.")
 else:
     print("-> Это НЕ треугольник.")
-
-#
-# def triangle(a, b, c):
-#     if a + b > c and a + c > b and b + c > a:
-#         return True
-#     return False

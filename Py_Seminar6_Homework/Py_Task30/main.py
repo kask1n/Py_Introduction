@@ -11,7 +11,7 @@ a1 = int(input("Введите первый элемент арифметиче�
 d = int(input("Введите шаг: "))
 n = int(input("Введите количество элементов: "))
 
-list_1 = [i for i in range(a1, a1 + (n - 1) * d + 1, d)]
-print(*list_1)
+# list_1 = [i for i in range(a1, a1 + (n - 1) * d + 1, d)]
+# print(*list_1)
 
-# print(*[a1 + (n - 1) * d for n in range(1, n + 1)])
+print(*[a1 + i * d for i in range(n)])

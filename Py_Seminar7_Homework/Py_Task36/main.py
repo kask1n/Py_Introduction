@@ -17,10 +17,9 @@
 
 def print_operation_table(operation, num_rows=6, num_columns=6):
     for i in range(1, num_rows + 1):
-        lst = []
         for j in range(1, num_columns + 1):
-            lst.append(operation(i, j))
-            print(f"{lst[-1]}".rjust(4), end="")
+            # print(str(operation(i, j)).rjust(4), end="")
+            print(f"{operation(i, j):4}", end="")
         print(end="\n")
 
 

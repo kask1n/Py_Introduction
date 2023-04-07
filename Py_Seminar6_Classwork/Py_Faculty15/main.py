@@ -16,12 +16,14 @@ numbers_tel = '+71234567890 +71234567854 +61234576890 +52134567890 +21235777890 
 d = {}
 list_num = numbers_tel.split()
 print(list_num)
-for i in list_num:
-    if i[:2] not in d.keys():
-        d[i[:2]] = [i]
-    else:
-        d[i[:2]] += [i]
 
-# d = {d[i[:2]] for i in list_num if i[:2] not in d.keys()}
+# for tel in list_num:
+#     if tel[:2] not in d.keys():
+#         d[tel[:2]] = [tel]
+#     else:
+#         d[tel[:2]] += [tel]
+#
+# print(sorted(d.items()))
 
-print(sorted(d.items()))
+d = dict((tel[:2], tel) if tel[:2] not in d.keys() else (tel[:2], tel) for tel in list_num)
+print(d)

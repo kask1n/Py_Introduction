@@ -12,31 +12,29 @@
 
 import re
 
-
-def is_rhyme(vowels_count):
-    for index in range(len(vowels_count) - 1):
-        if (vowels_count[index]) != (vowels_count[index + 1]):
-            return False
-    return True
-
-
 vowels = 'аеёиоуыэюя'
-words = 'пара-ра-рам рам-пам-папам па-ра-па-дам'.split()
-entries = []
+words = 'пару-ра-рам рам-пам-папам па-ра-пи-дам'.split()
 
-for word in words:
-    entries.append(0)
-    for char in vowels:
-        entries.append(entries.pop() + word.count(char))
+# entries = []  # Подсчёт гласных в каждом слове через цикл в цикле.
+# for word in words:
+#     entries.append(0)
+#     for char in vowels:
+#         entries.append(entries.pop() + word.count(char))
 
-print("Список слов:", words)
-print("Количество гласных в словах:", entries)
-print("-> Парам пам-пам") if is_rhyme(entries) else print("-> Пам парам")
+entries = [sum(word.count(char) for char in vowels) for word in words]
+# entries = [len([each for each in word if each in vowels]) for word in words]
+# entries = list(map(lambda word: len(re.findall(f'[{vowels}]', word)), words))
 
-# words = list(filter(lambda x: len(list(re.findall('аеёиоуыэюя', x))), words))
+print(("-> Пам парам", "-> Парам пам-пам")[len(set(entries)) == 1])  # Вывод на экран с ветвлением в одну строку.
+# print("-> Парам пам-пам") if len(set(entries)) == 1 else print("-> Пам парам")  # Ветвление в одну строку.
+
 # print("Список слов:", words)
+# print("Количество гласных в словах:", entries)
 
-# if find_vowels(lambda x: map(x.count(d), words), words):
-#     print('same')
-# else:
-#     print('different')
+# def is_rhyme(vowels_count):  # Проверка рифмы через поочерёдное сравнение элементов.
+#     for index in range(len(vowels_count) - 1):
+#         if (vowels_count[index]) != (vowels_count[index + 1]):
+#             return False
+#     return True
+#
+# print("-> Парам пам-пам") if is_rhyme(entries) else print("-> Пам парам")
