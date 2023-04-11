@@ -30,5 +30,22 @@ print(list(re.findall('[яюэыуоиёеа]+', 'аеёи00000ыэюя')))  # [
 # Выводит список всех вхождений символов КАК ПО ОТДЕЛЬНОСТИ, ТАК И ПОСЛЕДОВАТЕЛЬНОСТЕЙ в исходной строке.
 
 vowels = 'аеёиоуыэюя'
-func = lambda i: i in vowels
+word = 'Пара-ра-рам'
+func = lambda i: i in vowels  # Моветон - так обычно не делается.
 print(func('я'))
+print(list(filter(func, word)))
+
+# ГЕНЕРАТОР СЛОВАРЕЙ:
+keys = 'abcde'
+vals = [1, 2, 3, 4, 5]
+condition = True
+resDict = {key: val for (key, val) in zip(keys, vals) if condition}
+print(resDict)
+
+resDict = dict(zip(keys, vals))
+print(resDict)
+
+vals = range(0, 11, 2)
+print(vals)
+resDict = {val: val + val for val in vals}
+print(resDict)
